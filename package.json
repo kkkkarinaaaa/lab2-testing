@@ -1,0 +1,33 @@
+{
+  "name": "lab2-testing",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write \"src/**/*.{js,vue,json,css}\"",
+    "test:unit": "vitest src",
+    "test:unit:coverage": "vitest src --coverage",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test": "npm run test:unit && npm run test:e2e"
+  },
+  "dependencies": {
+    "vue": "^3.5.12"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.59.1",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "@vitest/coverage-v8": "^1.6.1",
+    "@vue/test-utils": "^2.4.10",
+    "eslint": "^9.39.4",
+    "eslint-plugin-vue": "^10.9.1",
+    "jsdom": "^24.1.1",
+    "prettier": "^3.8.3",
+    "vite": "^5.4.10",
+    "vitest": "^1.6.1"
+  }
+}
