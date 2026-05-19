@@ -1,5 +1,7 @@
-# Vue 3 + Vite
+[![CI/CD Pipeline](https://github.com/kkkkarinaaaa/lab2-testing/actions/workflows/ci-cd.yml/badge.svg)](https://github.com/kkkkarinaaaa/lab2-testing/actions/workflows/ci-cd.yml)
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+# Менеджер завдань
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Production
+
+Робоча версія застосунку: https://lab2-testing.vercel.app
