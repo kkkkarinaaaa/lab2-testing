@@ -18,7 +18,7 @@ posthog.init('phc_mYhPWtRU4mYFQafv8jkEv9w2UHXyJ88KrisdUiTK9xQn', {
 
 Sentry.init({
   app,
-  dsn: 'ВСТАВ_СЮДИ_СВІЙ_DSN_ІЗ_SENTRY',
+  dsn: 'ef5fb6aa55bb11f1814e828a9bec2b13',
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
