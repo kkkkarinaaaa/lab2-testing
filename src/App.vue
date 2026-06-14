@@ -5,7 +5,6 @@ import * as Sentry from '@sentry/vue'
 import { addTask, toggleTask, deleteTask, filterTasks, getTaskStats } from './utils/taskService'
 
 const appStatus = import.meta.env.VITE_APP_STATUS
-const isDev = import.meta.env.DEV
 
 const tasks = ref([])
 const newTask = ref('')
@@ -71,21 +70,24 @@ function handleDeleteTask(id) {
   })
 }
 
-function throwTestError() {
-  const testError = new Error('Critical TaskFlow Error: Alert verification failed!')
+function throwBranchTestError() {
+  const branchName = 'feature-sentry-branch-test'
+  const branchError = new Error(`Unique Branch Error: ${branchName} verification failed`)
 
-  console.log('Sentry test error clicked')
+  console.log('Unique branch Sentry error clicked')
 
-  Sentry.setTag('test_button', 'true')
-  Sentry.setContext('test_error_context', {
+  Sentry.setTag('branch', branchName)
+  Sentry.setTag('test_type', 'unique_branch_error')
+  Sentry.setContext('branch_test_context', {
+    branch: branchName,
     source: 'App.vue',
-    action: 'manual_test_button_click',
-    purpose: 'Sentry error tracking verification',
+    action: 'manual_branch_error_button_click',
+    purpose: 'Testing unique Sentry issue from another branch',
   })
 
-  Sentry.captureException(testError)
+  Sentry.captureException(branchError)
 
-  throw testError
+  throw branchError
 }
 </script>
 
@@ -131,9 +133,9 @@ function throwTestError() {
       </button>
     </section>
 
-    <section v-if="isDev" class="error-testing">
-      <button @click="throwTestError">
-        Викликати тестову помилку
+    <section class="error-testing">
+      <button @click="throwBranchTestError">
+        Викликати branch-помилку
       </button>
     </section>
 

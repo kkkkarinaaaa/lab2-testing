@@ -11,14 +11,14 @@ posthog.init('phc_mYhPWtRU4mYFQafv8jkEv9w2UHXyJ88KrisdUiTK9xQn', {
   person_profiles: 'identified_only',
   autocapture: true,
   capture_pageview: true,
-  loaded: (posthog) => {
+  loaded: () => {
     console.log('PostHog loaded')
   },
 })
 
 Sentry.init({
   app,
-  dsn: 'ef5fb6aa55bb11f1814e828a9bec2b13',
+  dsn: 'https://b533d147c1d2095ce8a03668b2da47b0@o4511432620900352.ingest.de.sentry.io/4511432627781712',
   integrations: [
     Sentry.browserTracingIntegration(),
     Sentry.replayIntegration(),
@@ -45,5 +45,7 @@ Sentry.setContext('laboratory_work', {
 Sentry.setTag('application', 'taskflow')
 Sentry.setTag('laboratory', 'lab-6')
 Sentry.setTag('environment_type', 'development')
+
+console.log('Sentry init done')
 
 app.mount('#app')
