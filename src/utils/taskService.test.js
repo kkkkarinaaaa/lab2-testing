@@ -1,12 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import {
-  addTask,
-  toggleTask,
-  deleteTask,
-  filterTasks,
-  getTaskStats,
-  saveTask
-} from './taskService'
+import { addTask, toggleTask, deleteTask, filterTasks, getTaskStats, saveTask } from './taskService'
 
 describe('taskService', () => {
   it('додає нове завдання до списку', () => {
@@ -39,7 +32,7 @@ describe('taskService', () => {
   it('видаляє завдання за id', () => {
     const tasks = [
       { id: 1, title: 'Task 1', completed: false },
-      { id: 2, title: 'Task 2', completed: true }
+      { id: 2, title: 'Task 2', completed: true },
     ]
 
     const result = deleteTask(tasks, 1)
@@ -51,7 +44,7 @@ describe('taskService', () => {
   it('фільтрує тільки активні завдання', () => {
     const tasks = [
       { id: 1, title: 'Task 1', completed: false },
-      { id: 2, title: 'Task 2', completed: true }
+      { id: 2, title: 'Task 2', completed: true },
     ]
 
     const result = filterTasks(tasks, 'active')
@@ -64,7 +57,7 @@ describe('taskService', () => {
     const tasks = [
       { id: 1, title: 'Task 1', completed: false },
       { id: 2, title: 'Task 2', completed: true },
-      { id: 3, title: 'Task 3', completed: false }
+      { id: 3, title: 'Task 3', completed: false },
     ]
 
     const result = getTaskStats(tasks)
@@ -72,15 +65,15 @@ describe('taskService', () => {
     expect(result).toEqual({
       total: 3,
       completed: 1,
-      active: 2
+      active: 2,
     })
   })
 
   it('використовує mock API-клієнта під час збереження завдання', async () => {
     const mockApiClient = {
       post: vi.fn().mockResolvedValue({
-        data: { id: 10, title: 'Mock task', completed: false }
-      })
+        data: { id: 10, title: 'Mock task', completed: false },
+      }),
     }
 
     const task = { title: 'Mock task', completed: false }

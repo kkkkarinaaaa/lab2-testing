@@ -28,7 +28,10 @@ button {
   background: linear-gradient(135deg, #ec4899, #d946ef);
   cursor: pointer;
   box-shadow: 0 10px 22px rgba(236, 72, 153, 0.28);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    opacity 0.2s ease;
 }
 
 button:hover {
@@ -49,7 +52,9 @@ input {
   color: #3b1f2b;
   background: #fff7fb;
   outline: none;
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 input:focus {

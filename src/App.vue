@@ -41,15 +41,9 @@ function handleDeleteTask(id) {
     </p>
 
     <section class="form">
-      <input
-        v-model="newTask"
-        placeholder="Введіть завдання"
-        aria-label="Введіть завдання"
-      />
+      <input v-model="newTask" placeholder="Введіть завдання" aria-label="Введіть завдання" />
 
-      <button @click="handleAddTask">
-        Додати
-      </button>
+      <button @click="handleAddTask">Додати</button>
     </section>
 
     <p v-if="error" class="error">
@@ -57,36 +51,21 @@ function handleDeleteTask(id) {
     </p>
 
     <section class="filters">
-      <button @click="filter = 'all'">
-        Усі
-      </button>
-      <button @click="filter = 'active'">
-        Активні
-      </button>
-      <button @click="filter = 'completed'">
-        Виконані
-      </button>
+      <button @click="filter = 'all'">Усі</button>
+      <button @click="filter = 'active'">Активні</button>
+      <button @click="filter = 'completed'">Виконані</button>
     </section>
 
     <ul>
-      <li
-        v-for="task in visibleTasks"
-        :key="task.id"
-      >
+      <li v-for="task in visibleTasks" :key="task.id">
         <label>
-          <input
-            type="checkbox"
-            :checked="task.completed"
-            @change="handleToggleTask(task.id)"
-          />
+          <input type="checkbox" :checked="task.completed" @change="handleToggleTask(task.id)" />
           <span :class="{ completed: task.completed }">
             {{ task.title }}
           </span>
         </label>
 
-        <button @click="handleDeleteTask(task.id)">
-          Видалити
-        </button>
+        <button @click="handleDeleteTask(task.id)">Видалити</button>
       </li>
     </ul>
 
