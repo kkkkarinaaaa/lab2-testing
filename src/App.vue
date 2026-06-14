@@ -4,6 +4,7 @@ import posthog from 'posthog-js'
 import { addTask, toggleTask, deleteTask, filterTasks, getTaskStats } from './utils/taskService'
 
 const appStatus = import.meta.env.VITE_APP_STATUS
+const isDev = import.meta.env.DEV
 
 const tasks = ref([])
 const newTask = ref('')
@@ -68,6 +69,10 @@ function handleDeleteTask(id) {
     reason: 'user_action',
   })
 }
+
+function throwTestError() {
+  throw new Error('Critical TaskFlow Error: Alert verification failed!')
+}
 </script>
 
 <template>
@@ -79,9 +84,15 @@ function handleDeleteTask(id) {
     </p>
 
     <section class="form">
-      <input v-model="newTask" placeholder="Введіть завдання" aria-label="Введіть завдання" />
+      <input
+        v-model="newTask"
+        placeholder="Введіть завдання"
+        aria-label="Введіть завдання"
+      />
 
-      <button @click="handleAddTask">Додати</button>
+      <button @click="handleAddTask">
+        Додати
+      </button>
     </section>
 
     <p v-if="error" class="error">
@@ -89,22 +100,46 @@ function handleDeleteTask(id) {
     </p>
 
     <section class="filters">
-      <button @click="filter = 'all'">Усі</button>
-      <button @click="filter = 'active'">Активні</button>
-      <button @click="filter = 'completed'">Виконані</button>
-      <button v-if="showUrgentFilter" @click="filter = 'urgent'">Термінові</button>
+      <button @click="filter = 'all'">
+        Усі
+      </button>
+
+      <button @click="filter = 'active'">
+        Активні
+      </button>
+
+      <button @click="filter = 'completed'">
+        Виконані
+      </button>
+
+      <button v-if="showUrgentFilter" @click="filter = 'urgent'">
+        Термінові
+      </button>
+    </section>
+
+    <section v-if="isDev" class="error-testing">
+      <button @click="throwTestError">
+        Викликати тестову помилку
+      </button>
     </section>
 
     <ul>
       <li v-for="task in visibleTasks" :key="task.id">
         <label>
-          <input type="checkbox" :checked="task.completed" @change="handleToggleTask(task.id)" />
+          <input
+            type="checkbox"
+            :checked="task.completed"
+            @change="handleToggleTask(task.id)"
+          />
+
           <span :class="{ completed: task.completed }">
             {{ task.title }}
           </span>
         </label>
 
-        <button @click="handleDeleteTask(task.id)">Видалити</button>
+        <button @click="handleDeleteTask(task.id)">
+          Видалити
+        </button>
       </li>
     </ul>
 
