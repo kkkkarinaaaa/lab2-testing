@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue'
 import posthog from 'posthog-js'
+import * as Sentry from '@sentry/vue'
 import { addTask, toggleTask, deleteTask, filterTasks, getTaskStats } from './utils/taskService'
 
 const appStatus = import.meta.env.VITE_APP_STATUS
@@ -71,7 +72,20 @@ function handleDeleteTask(id) {
 }
 
 function throwTestError() {
-  throw new Error('Critical TaskFlow Error: Alert verification failed!')
+  const testError = new Error('Critical TaskFlow Error: Alert verification failed!')
+
+  console.log('Sentry test error clicked')
+
+  Sentry.setTag('test_button', 'true')
+  Sentry.setContext('test_error_context', {
+    source: 'App.vue',
+    action: 'manual_test_button_click',
+    purpose: 'Sentry error tracking verification',
+  })
+
+  Sentry.captureException(testError)
+
+  throw testError
 }
 </script>
 
